@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/my_sensor_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/summary_usage"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Normal"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/circle_shape_green">
+        </TextView>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginTop="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/summary_date"
+        android:textColor="#4a4a4a"
+        android:textStyle="normal"
+        android:text="2015-03-01"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true">
+    </TextView>
+
+    <TextView
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/summary_voltage"
+        android:textColor="#4a4a4a"
+        android:gravity="center"
+        android:text="234 V"
+        android:layout_gravity="center_horizontal">
+    </TextView>
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/summary_current"
+        android:textColor="#4a4a4a"
+        android:gravity="center"
+        android:text="367 MHz"
+        android:layout_gravity="center_horizontal">
+    </TextView>
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/summary_frequency"
+        android:textColor="#4a4a4a"
+        android:gravity="center"
+        android:text="1200 A"
+        android:layout_gravity="center_horizontal">
+    </TextView>
+</LinearLayout>

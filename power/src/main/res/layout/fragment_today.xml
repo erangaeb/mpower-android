@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="#e5e5e5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/circle_shape_green">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="25sp"
+                android:id="@+id/voltage"
+                android:layout_gravity="center"
+                android:text="230 V"
+                android:gravity="center"
+                android:textColor="#ffffff">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="25sp"
+                android:layout_gravity="center"
+                android:id="@+id/current"
+                android:text="1700 KHz"
+                android:gravity="center"
+                android:textColor="#ffffff">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="40dp"
+                android:textSize="25sp"
+                android:id="@+id/frequency"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="1033.4 A">
+            </TextView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:background="#ffffff">
+
+        <org.eazegraph.lib.charts.ValueLineChart
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cubiclinechart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:egUseCubic="true"
+            app:egUseOverlapFill="true"
+            app:egCurveSmoothness="0.4"
+            app:egIndicatorLineColor="#FE6DA8"
+            app:egLegendHeight="40dp"
+            app:egShowStandardValue="true"/>
+    </RelativeLayout>
+</LinearLayout>
