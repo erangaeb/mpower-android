@@ -15,10 +15,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mpower.power.R;
 import com.mpower.power.adapters.DrawerAdapter;
+import com.mpower.power.asynctasks.GcmRegistrationAsynTask;
+import com.mpower.power.listeners.GcmRegistrationServiceListener;
+import com.mpower.power.pojos.Device;
 import com.mpower.power.pojos.DrawerItem;
+import com.mpower.power.utils.ActivityUtils;
+import com.mpower.power.utils.PreferenceUtils;
 
 import java.util.ArrayList;
 
@@ -29,7 +35,7 @@ import java.util.ArrayList;
  *
  * @author eranga herath(eranga.herath@pagero.com)
  */
-public class HomeActivity extends FragmentActivity implements View.OnClickListener {
+public class HomeActivity extends FragmentActivity implements View.OnClickListener, GcmRegistrationServiceListener {
 
     // UI components
     private ListView drawerListView;
@@ -52,6 +58,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
         initDrawer();
         initDrawerList();
+        initGcm();
     }
 
     /**
@@ -140,11 +147,40 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         drawerListView.setOnItemClickListener(new DrawerItemClickListener());
     }
 
+    /**
+     * Initialize GCM notification service
+     */
+    private void initGcm() {
+        if (PreferenceUtils.getGcmRegistrationId(HomeActivity.this).isEmpty()) {
+            // no registered device
+            // register for gcm
+            Device device = new Device("id", "reg_id", PreferenceUtils.getAndroidId(this));
+            ActivityUtils.showProgressDialog(HomeActivity.this, "Activating notification service");
+            new GcmRegistrationAsynTask(HomeActivity.this, HomeActivity.this, device).execute();
+        } else {
+            // do nothing
+        }
+    }
+
     @Override
     public void onClick(View v) {
 
     }
 
+    /**
+     * Listen for GCM registration even
+     * @param status registration status
+     */
+    @Override
+    public void onPostGcmRegistration(String status) {
+        ActivityUtils.cancelProgressDialog();
+
+        if (status.equalsIgnoreCase("1")) {
+            Toast.makeText(this, "Successfully enabled notification service", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Fails to enable notification service", Toast.LENGTH_LONG).show();
+        }
+    }
 
     /**
      * Handle open/close behaviours of Navigation Drawer

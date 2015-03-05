@@ -70,7 +70,7 @@
             app:egUseCubic="true"
             app:egUseOverlapFill="true"
             app:egCurveSmoothness="0.4"
-            app:egIndicatorLineColor="#FE6DA8"
+            app:egIndicatorLineColor="#FE6DA9"
             app:egLegendHeight="40dp"
             app:egShowStandardValue="true"/>
     </RelativeLayout>
