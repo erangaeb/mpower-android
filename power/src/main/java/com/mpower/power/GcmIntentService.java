@@ -63,13 +63,20 @@ public class GcmIntentService extends IntentService {
         // parser message and get the text that need to be display
         // message comes as JSON string
         try {
+            // add message and status to bundle
+            Bundle extra = new Bundle();
+            extra.putBoolean("NOTIFICATION_RECEIVED", true);
+            extra.putString("NOTIFICATION_MESSAGE", message);
+
             // pending intent
             Intent notificationIntent = new Intent(this, HomeActivity.class);
             notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+            //notificationIntent.putExtras(extra);
+            notificationIntent.putExtra("TT", 567);
+            PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             // build notification
-            //NotificationMessage notificationMessage = JSONParser.getNotificationMessage(this, message);
+            // NotificationMessage notificationMessage = JSONParser.getNotificationMessage(this, message);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
             builder.setSmallIcon(R.drawable.ic_launcher)
                     .setContentTitle(getString(R.string.app_name))

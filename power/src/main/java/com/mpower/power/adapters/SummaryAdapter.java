@@ -115,11 +115,11 @@ public class SummaryAdapter extends BaseAdapter {
 
         if (summary.getUsage() == PowerUsage.NORMAL) {
             holder.usage.setText("Normal usage");
-            holder.usage.setTextColor(Color.parseColor("#11b29c"));
-            holder.date.setTextColor(Color.parseColor("#11b29c"));
-            holder.voltage.setTextColor(Color.parseColor("#11b29c"));
-            holder.current.setTextColor(Color.parseColor("#11b29c"));
-            holder.frequency.setTextColor(Color.parseColor("#11b29c"));
+            holder.usage.setTextColor(Color.parseColor("#63cbb0"));
+            holder.date.setTextColor(Color.parseColor("#63cbb0"));
+            holder.voltage.setTextColor(Color.parseColor("#63cbb0"));
+            holder.current.setTextColor(Color.parseColor("#63cbb0"));
+            holder.frequency.setTextColor(Color.parseColor("#63cbb0"));
             holder.userIcon.setBackgroundResource(R.drawable.circle_shape_green);
         } else if (summary.getUsage() == PowerUsage.MID) {
             holder.userIcon.setBackgroundResource(R.drawable.circle_shape_orange);

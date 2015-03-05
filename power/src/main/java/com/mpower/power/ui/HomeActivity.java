@@ -8,6 +8,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +49,8 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     private ArrayList<DrawerItem> drawerItemList;
     private DrawerAdapter drawerAdapter;
 
+    static final String TAG = HomeActivity.class.getName();
+
     /**
      * {@inheritDoc}
      */
@@ -59,6 +62,24 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         initDrawer();
         initDrawerList();
         initGcm();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // get notification message via bundle
+        Bundle bundle = getIntent().getExtras();
+        Log.d(TAG, "resummmmmmmmmmmm");
+        if (bundle != null) {
+            boolean isMessageReceived = bundle.getBoolean("NOTIFICATION_RECEIVED", false);
+            String message = bundle.getString("NOTIFICATION_MESSAGE");
+            Log.d(TAG, "message received --- " + isMessageReceived);
+            Log.d(TAG, "message --- " + message);
+            loadSummary();
+        } else {
+            loadToday();
+        }
     }
 
     /**
@@ -228,6 +249,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             } else if(position == 2) {
                 drawerItemList.get(2).setSelected(true);
                 getActionBar().setTitle("Switch board");
+                loadSwitchBoard();
             }
 
             drawerAdapter.notifyDataSetChanged();
@@ -262,4 +284,17 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         transaction.commit();
     }
 
+    /**
+     * Load my switch board fragment
+     */
+    private void loadSwitchBoard() {
+        SwitchBoardFragment switchBoardFragment = new SwitchBoardFragment();
+
+        // fragment transitions
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main, switchBoardFragment);
+        transaction.commit();
+    }
 }
