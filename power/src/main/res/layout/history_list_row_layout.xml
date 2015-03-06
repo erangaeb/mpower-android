@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/invoice_list_middle_item_background">
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/invoice_list_row_new_layout_text_container"
+                    android:orientation="vertical">
+                <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:id="@+id/history_list_date"
+                            android:textSize="18sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="1dp"
+                            android:textStyle="bold"
+                            android:gravity="center_vertical"
+                            android:textColor="#4a4a4a"
+                            android:layout_alignParentLeft="true"
+                            android:text="2015-03-01">
+                    </TextView>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:id="@+id/invoice_list_row_new_layout_company"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="1dp"
+                            android:gravity="center_vertical"
+                            android:textSize="18sp"
+                            android:textColor="#b5c976"
+                            android:text=""
+                            android:layout_toRightOf="@+id/history_list_date">
+                    </TextView>
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="left"
+                        android:layout_height="22dp">
+                    <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/voltage"
+                            android:layout_gravity="center_vertical">
+                    </ImageView>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/history_list_voltage"
+                            android:textSize="16sp"
+                            android:textColor="#4a4a4a"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_gravity="center_vertical"
+                            android:text="230.00 V">
+
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="left"
+                        android:layout_height="22dp">
+
+                    <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/current"
+                            android:layout_centerVertical="true">
+                    </ImageView>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:id="@+id/history_list_current"
+                            android:textSize="16sp"
+                            android:textColor="#4a4a4a"
+                            android:layout_gravity="center_vertical"
+                            android:text="20 A">
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="22dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="0dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/frequency"
+                            android:layout_centerVertical="true"
+                            android:id="@+id/invoice_list_row_new_layout_sahre_icon">
+                    </ImageView>
+
+                    <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/history_list_frequency"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="7dp"
+                            android:textColor="#4a4a4a"
+                            android:gravity="left"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="50 MHz">
+                    </TextView>
+
+                    <RelativeLayout
+                            android:visibility="visible"
+                            android:layout_width="100dp"
+                            android:layout_height="18dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="#dd4a38"
+                            android:layout_marginRight="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:id="@+id/history_list_usage"
+                            android:layout_alignParentRight="true"
+                            >
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#ffffff"
+                                android:textSize="12sp"
+                                android:id="@+id/history_list_usage_text"
+                                android:layout_centerInParent="true"
+                                android:text="Over usage">
+                        </TextView>
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

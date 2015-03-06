@@ -89,23 +89,23 @@ public class SummaryAdapter extends BaseAdapter {
         if (view == null) {
             //inflate sensor list row layout
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.s_row_layout, viewGroup, false);
+            view = layoutInflater.inflate(R.layout.history_list_row_layout, viewGroup, false);
 
             //create view holder to store reference to child views
             holder = new ViewHolder();
-            holder.userIcon = (RelativeLayout) view.findViewById(R.id.friend_list_row_layout_user_icon);
-            holder.usage = (TextView) view.findViewById(R.id.usage);
-            holder.date = (TextView) view.findViewById(R.id.friend_list_row_layout_date);
-            holder.voltage = (TextView) view.findViewById(R.id.friend_list_row_layout_vol);
-            holder.current = (TextView) view.findViewById(R.id.friend_list_row_layout_cur);
-            holder.frequency = (TextView) view.findViewById(R.id.friend_list_row_layout_frq);
+            holder.usage = (RelativeLayout) view.findViewById(R.id.history_list_usage);
+            holder.usageText = (TextView) view.findViewById(R.id.history_list_usage_text);
+            holder.date = (TextView) view.findViewById(R.id.history_list_date);
+            holder.voltage = (TextView) view.findViewById(R.id.history_list_voltage);
+            holder.current = (TextView) view.findViewById(R.id.history_list_current);
+            holder.frequency = (TextView) view.findViewById(R.id.history_list_frequency);
 
             // set custom font
-            holder.usage.setTypeface(typefaceBlack, Typeface.NORMAL);
+            holder.usageText.setTypeface(typefaceThin, Typeface.BOLD);
             holder.date.setTypeface(typefaceThin, Typeface.BOLD);
-            holder.voltage.setTypeface(typefaceThin, Typeface.BOLD);
-            holder.current.setTypeface(typefaceThin, Typeface.BOLD);
-            holder.frequency.setTypeface(typefaceThin, Typeface.BOLD);
+            holder.voltage.setTypeface(typefaceThin, Typeface.NORMAL);
+            holder.current.setTypeface(typefaceThin, Typeface.NORMAL);
+            holder.frequency.setTypeface(typefaceThin, Typeface.NORMAL);
 
             view.setTag(holder);
         } else {
@@ -114,29 +114,14 @@ public class SummaryAdapter extends BaseAdapter {
         }
 
         if (summary.getUsage() == PowerUsage.NORMAL) {
-            holder.usage.setText("Normal usage");
-            holder.usage.setTextColor(Color.parseColor("#63cbb0"));
-            holder.date.setTextColor(Color.parseColor("#63cbb0"));
-            holder.voltage.setTextColor(Color.parseColor("#63cbb0"));
-            holder.current.setTextColor(Color.parseColor("#63cbb0"));
-            holder.frequency.setTextColor(Color.parseColor("#63cbb0"));
-            holder.userIcon.setBackgroundResource(R.drawable.circle_shape_green);
+            holder.usage.setBackgroundColor(Color.parseColor("#63cbb0"));
+            holder.usageText.setText("NORMAL");
         } else if (summary.getUsage() == PowerUsage.MID) {
-            holder.userIcon.setBackgroundResource(R.drawable.circle_shape_orange);
-            holder.usage.setText("Mid usage");
-            holder.usage.setTextColor(Color.parseColor("#CCffc027"));
-            holder.date.setTextColor(Color.parseColor("#CCffc027"));
-            holder.voltage.setTextColor(Color.parseColor("#CCffc027"));
-            holder.frequency.setTextColor(Color.parseColor("#CCffc027"));
-            holder.current.setTextColor(Color.parseColor("#CCffc027"));
+            holder.usage.setBackgroundColor(Color.parseColor("#CCffc027"));
+            holder.usageText.setText("MID");
         } else {
-            holder.userIcon.setBackgroundResource(R.drawable.circle_shape_red);
-            holder.usage.setText("Over usage");
-            holder.usage.setTextColor(Color.parseColor("#d96459"));
-            holder.date.setTextColor(Color.parseColor("#d96459"));
-            holder.voltage.setTextColor(Color.parseColor("#d96459"));
-            holder.current.setTextColor(Color.parseColor("#d96459"));
-            holder.frequency.setTextColor(Color.parseColor("#d96459"));
+            holder.usage.setBackgroundColor(Color.parseColor("#d96459"));
+            holder.usageText.setText("OVER");
         }
 
         holder.date.setText(summary.getDate());
@@ -151,8 +136,8 @@ public class SummaryAdapter extends BaseAdapter {
      * Keep reference to children view to avoid unnecessary calls
      */
     static class ViewHolder {
-        RelativeLayout userIcon;
-        TextView usage;
+        RelativeLayout usage;
+        TextView usageText;
         TextView date;
         TextView voltage;
         TextView current;

@@ -158,6 +158,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         drawerItemList.add(new DrawerItem("Today", true));
         drawerItemList.add(new DrawerItem("Summary", false));
         drawerItemList.add(new DrawerItem("Switch board", false));
+        drawerItemList.add(new DrawerItem("Invoices", false));
 
         drawerAdapter = new DrawerAdapter(HomeActivity.this, drawerItemList);
         drawerListView = (ListView) findViewById(R.id.drawer);
@@ -250,6 +251,9 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 drawerItemList.get(2).setSelected(true);
                 getActionBar().setTitle("Switch board");
                 loadSwitchBoard();
+            } else if(position == 3) {
+                drawerItemList.get(3).setSelected(true);
+                getActionBar().setTitle("Invoices");
             }
 
             drawerAdapter.notifyDataSetChanged();
