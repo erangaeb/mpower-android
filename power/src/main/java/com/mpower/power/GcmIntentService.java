@@ -63,6 +63,16 @@ public class GcmIntentService extends IntentService {
         // parser message and get the text that need to be display
         // message comes as JSON string
         try {
+            String notificationMessage = "Over usage switch";
+            // detect consumption type according to message
+            if (message.equalsIgnoreCase("OVER")) {
+                MPowerApplication.STATE = MPowerApplication.OVER;
+                notificationMessage = "Over usage switch";
+            } else {
+                MPowerApplication.STATE = MPowerApplication.NORMAL;
+                notificationMessage = "Normal usage switch";
+            }
+
             // add message and status to bundle
             Bundle extra = new Bundle();
             extra.putBoolean("NOTIFICATION_RECEIVED", true);
@@ -80,7 +90,7 @@ public class GcmIntentService extends IntentService {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
             builder.setSmallIcon(R.drawable.ic_launcher)
                     .setContentTitle(getString(R.string.app_name))
-                    .setContentText("Over usage")
+                    .setContentText(notificationMessage)
                     .setTicker(message)
                     .setWhen(System.currentTimeMillis())
                     .setContentIntent(contentIntent)
