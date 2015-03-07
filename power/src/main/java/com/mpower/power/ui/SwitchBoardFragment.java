@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +28,6 @@ import de.tavendo.autobahn.WebSocketHandler;
 public class SwitchBoardFragment extends Fragment implements View.OnClickListener {
 
     // switch texts
-    TextView switch1Icon;
-    TextView switch2Icon;
-    TextView switch3Icon;
-    TextView switch4Icon;
     TextView switch1Text;
     TextView switch2Text;
     TextView switch3Text;
@@ -39,9 +36,13 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
     RelativeLayout switch1;
     RelativeLayout switch2;
 
+    Switch kitchenSwitch;
+
     // set custom font
     Typeface typefaceThin;
     Typeface typefaceBlack;
+
+    boolean isSwitchedOn = false;
 
     static final String TAG = SwitchBoardFragment.class.getName();
 
@@ -74,29 +75,21 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
      * Initialize UI components
      */
     private void initUi() {
-        switch1Icon = (TextView) this.getActivity().findViewById(R.id.switch1_icon);
-        switch2Icon = (TextView) this.getActivity().findViewById(R.id.switch2_icon);
-        switch3Icon = (TextView) this.getActivity().findViewById(R.id.switch3_icon);
-        switch4Icon = (TextView) this.getActivity().findViewById(R.id.switch4_icon);
         switch1Text = (TextView) this.getActivity().findViewById(R.id.switch1_text);
         switch2Text = (TextView) this.getActivity().findViewById(R.id.switch2_text);
         switch3Text = (TextView) this.getActivity().findViewById(R.id.switch3_text);
         switch4Text = (TextView) this.getActivity().findViewById(R.id.switch4_text);
 
-        switch1Icon.setTypeface(typefaceThin, Typeface.BOLD);
-        switch2Icon.setTypeface(typefaceThin, Typeface.BOLD);
-        switch3Icon.setTypeface(typefaceThin, Typeface.BOLD);
-        switch4Icon.setTypeface(typefaceThin, Typeface.BOLD);
         switch1Text.setTypeface(typefaceThin, Typeface.NORMAL);
         switch2Text.setTypeface(typefaceThin, Typeface.NORMAL);
         switch3Text.setTypeface(typefaceThin, Typeface.NORMAL);
         switch4Text.setTypeface(typefaceThin, Typeface.NORMAL);
 
-        switch1 = (RelativeLayout) this.getActivity().findViewById(R.id.switch1_layout);
-        switch2 = (RelativeLayout) this.getActivity().findViewById(R.id.switch2_layout);
+        switch1 = (RelativeLayout) this.getActivity().findViewById(R.id.switch1);
+        switch2 = (RelativeLayout) this.getActivity().findViewById(R.id.switch2);
 
-        switch1.setOnClickListener(this);
-        switch2.setOnClickListener(this);
+        kitchenSwitch = (Switch) this.getActivity().findViewById(R.id.kitchen_switch);
+        kitchenSwitch.setOnClickListener(this);
 
         if (MPowerApplication.STATE.equals(MPowerApplication.OVER)) {
            loadOverUsageSwitchBoard();
@@ -124,9 +117,7 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
      * All switches are green
      */
     private void loadNormalUsageSwitchBoard() {
-        switch1.setBackgroundResource(R.drawable.orange_button_selector);
         switch2.setBackgroundResource(R.drawable.green_button_selector);
-        switch2Icon.setText("#");
         switch2Text.setText("Kitchen");
     }
 
@@ -135,9 +126,7 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
      * All switches are green
      */
     private void loadOverUsageSwitchBoard() {
-        switch1.setBackgroundResource(R.drawable.orange_button_selector);
         switch2.setBackgroundResource(R.drawable.red_button_selector);
-        switch2Icon.setText("!");
         switch2Text.setText("Kitchen");
     }
 
@@ -168,7 +157,13 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
                     } else if(payload.contains("DONE")) {
                         // disconnect from senz
                         ActivityUtils.cancelProgressDialog();
-                        Toast.makeText(SwitchBoardFragment.this.getActivity(), "Switched on", Toast.LENGTH_LONG).show();
+                        if (isSwitchedOn) {
+                            switch2.setBackgroundResource(R.drawable.red_button_selector);
+                            Toast.makeText(SwitchBoardFragment.this.getActivity(), "Switched on", Toast.LENGTH_LONG).show();
+                        } else {
+                            switch2.setBackgroundResource(R.drawable.disable_bg);
+                            Toast.makeText(SwitchBoardFragment.this.getActivity(), "Switched off", Toast.LENGTH_LONG).show();
+                        }
                         webSocketConnection.disconnect();
                     }
                 }
@@ -188,8 +183,19 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
         if (v == switch1) {
             // do nothing
         } else if (v == switch2) {
-            ActivityUtils.showProgressDialog(this.getActivity(), "Switching on...");
-            sendQueryToSenzServer("PUT #switch kitchen @home");
+            // do nothing
+        } else if(v == kitchenSwitch) {
+
+            isSwitchedOn = kitchenSwitch.isChecked();
+            if (isSwitchedOn) {
+                // off query
+                ActivityUtils.showProgressDialog(this.getActivity(), "Switching on...");
+                sendQueryToSenzServer("PUT #switch kitchen @home");
+            } else {
+                // on query
+                ActivityUtils.showProgressDialog(this.getActivity(), "Switching off...");
+                sendQueryToSenzServer(":PUT #switch kitchen @home");
+            }
         }
     }
 }

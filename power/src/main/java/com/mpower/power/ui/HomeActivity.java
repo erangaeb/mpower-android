@@ -156,9 +156,9 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         // need to determine selected item according to the currently selected sensor type
         drawerItemList = new ArrayList<DrawerItem>();
         drawerItemList.add(new DrawerItem("Today", true));
-        drawerItemList.add(new DrawerItem("Summary", false));
+        drawerItemList.add(new DrawerItem("History", false));
         drawerItemList.add(new DrawerItem("Switch board", false));
-        drawerItemList.add(new DrawerItem("Invoices", false));
+        drawerItemList.add(new DrawerItem("Bill", false));
 
         drawerAdapter = new DrawerAdapter(HomeActivity.this, drawerItemList);
         drawerListView = (ListView) findViewById(R.id.drawer);
