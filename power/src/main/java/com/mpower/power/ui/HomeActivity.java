@@ -158,7 +158,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         drawerItemList.add(new DrawerItem("Today", true));
         drawerItemList.add(new DrawerItem("History", false));
         drawerItemList.add(new DrawerItem("Switch board", false));
-        drawerItemList.add(new DrawerItem("Bill", false));
+        drawerItemList.add(new DrawerItem("Invoice", false));
 
         drawerAdapter = new DrawerAdapter(HomeActivity.this, drawerItemList);
         drawerListView = (ListView) findViewById(R.id.drawer);

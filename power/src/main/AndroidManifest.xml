@@ -34,7 +34,7 @@
             android:screenOrientation="portrait"
             android:configChanges="orientation"
             android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Holo.Light"
+            android:theme="@style/Theme.Mpower"
             android:windowSoftInputMode="stateHidden">
         </activity>
 

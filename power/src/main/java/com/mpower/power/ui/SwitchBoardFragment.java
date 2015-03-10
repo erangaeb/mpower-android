@@ -37,12 +37,14 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
     RelativeLayout switch2;
 
     Switch kitchenSwitch;
+    Switch bedRoomSwitch;
 
     // set custom font
     Typeface typefaceThin;
     Typeface typefaceBlack;
 
     boolean isSwitchedOn = false;
+    boolean isKitchen = true;
 
     static final String TAG = SwitchBoardFragment.class.getName();
 
@@ -89,7 +91,9 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
         switch2 = (RelativeLayout) this.getActivity().findViewById(R.id.switch2);
 
         kitchenSwitch = (Switch) this.getActivity().findViewById(R.id.kitchen_switch);
+        bedRoomSwitch = (Switch) this.getActivity().findViewById(R.id.bed_room_switch);
         kitchenSwitch.setOnClickListener(this);
+        bedRoomSwitch.setOnClickListener(this);
 
         if (MPowerApplication.STATE.equals(MPowerApplication.OVER)) {
            loadOverUsageSwitchBoard();
@@ -158,10 +162,20 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
                         // disconnect from senz
                         ActivityUtils.cancelProgressDialog();
                         if (isSwitchedOn) {
-                            switch2.setBackgroundResource(R.drawable.red_button_selector);
+                            if (isKitchen) {
+                                switch2.setBackgroundResource(R.drawable.red_button_selector);
+                            } else {
+                                switch1.setBackgroundResource(R.drawable.green_button_selector);
+                            }
+
                             Toast.makeText(SwitchBoardFragment.this.getActivity(), "Switched on", Toast.LENGTH_LONG).show();
                         } else {
-                            switch2.setBackgroundResource(R.drawable.disable_bg);
+                            if (isKitchen) {
+                                switch2.setBackgroundResource(R.drawable.disable_bg);
+                            } else {
+                                switch1.setBackgroundResource(R.drawable.disable_bg);
+                            }
+
                             Toast.makeText(SwitchBoardFragment.this.getActivity(), "Switched off", Toast.LENGTH_LONG).show();
                         }
                         webSocketConnection.disconnect();
@@ -182,11 +196,23 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         if (v == switch1) {
             // do nothing
-        } else if (v == switch2) {
+        } else if (v == bedRoomSwitch) {
             // do nothing
+            isSwitchedOn = bedRoomSwitch.isChecked();
+            isKitchen = false;
+            if (isSwitchedOn) {
+                // off query
+                ActivityUtils.showProgressDialog(this.getActivity(), "Switching on...");
+                sendQueryToSenzServer("PUT #switch bedroom @home");
+            } else {
+                // on query
+                ActivityUtils.showProgressDialog(this.getActivity(), "Switching off...");
+                sendQueryToSenzServer(":PUT #switch bedroom @home");
+            }
         } else if(v == kitchenSwitch) {
 
             isSwitchedOn = kitchenSwitch.isChecked();
+            isKitchen = true;
             if (isSwitchedOn) {
                 // off query
                 ActivityUtils.showProgressDialog(this.getActivity(), "Switching on...");
