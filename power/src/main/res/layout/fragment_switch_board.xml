@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/switch1"
-                android:background="@drawable/green_button_selector"
+                android:background="@drawable/disable_bg"
                 android:layout_weight="0.35">
                 <TextView
                     android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:textOn="On"
                     android:textOff="Off"/>
             </RelativeLayout>
@@ -56,13 +56,14 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:background="@drawable/transparent_bg"
             android:layout_weight="1">
             <RelativeLayout
                 android:id="@+id/switch2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/green_button_selector"
+                android:background="@drawable/disable_bg"
                 android:layout_weight="0.35">
                 <TextView
                     android:layout_width="wrap_content"
@@ -85,7 +86,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:textOn="On"
                     android:textOff="Off"/>
             </RelativeLayout>
@@ -96,12 +97,13 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:background="@drawable/transparent_bg"
             android:layout_weight="1">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/green_button_selector"
+                android:background="@drawable/disable_bg"
                 android:layout_weight="0.35">
                 <TextView
                     android:layout_width="wrap_content"
@@ -123,7 +125,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="15dp"
                     android:layout_width="100dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:layout_height="40dp"
                     android:textOn="On"
                     android:textOff="Off"/>
@@ -140,7 +142,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/green_button_selector"
+                android:background="@drawable/disable_bg"
                 android:layout_weight="0.35">
                 <TextView
                     android:layout_width="wrap_content"
@@ -163,7 +165,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:textOn="On"
                     android:textOff="Off"/>
             </RelativeLayout>

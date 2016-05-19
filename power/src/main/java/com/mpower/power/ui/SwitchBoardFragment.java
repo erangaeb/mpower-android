@@ -96,9 +96,9 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
         bedRoomSwitch.setOnClickListener(this);
 
         if (MPowerApplication.STATE.equals(MPowerApplication.OVER)) {
-           loadOverUsageSwitchBoard();
+           //loadOverUsageSwitchBoard();
         } else {
-            loadNormalUsageSwitchBoard();
+            //loadNormalUsageSwitchBoard();
         }
     }
 
@@ -163,7 +163,7 @@ public class SwitchBoardFragment extends Fragment implements View.OnClickListene
                         ActivityUtils.cancelProgressDialog();
                         if (isSwitchedOn) {
                             if (isKitchen) {
-                                switch2.setBackgroundResource(R.drawable.red_button_selector);
+                                switch2.setBackgroundResource(R.drawable.green_button_selector);
                             } else {
                                 switch1.setBackgroundResource(R.drawable.green_button_selector);
                             }

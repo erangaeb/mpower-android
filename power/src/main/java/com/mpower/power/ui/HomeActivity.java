@@ -173,7 +173,8 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
      * Initialize GCM notification service
      */
     private void initGcm() {
-        if (PreferenceUtils.getGcmRegistrationId(HomeActivity.this).isEmpty()) {
+        String gcmKey = PreferenceUtils.getGcmRegistrationId(HomeActivity.this);
+        if (gcmKey.isEmpty()) {
             // no registered device
             // register for gcm
             Device device = new Device("id", "reg_id", PreferenceUtils.getAndroidId(this));
@@ -181,6 +182,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             new GcmRegistrationAsynTask(HomeActivity.this, HomeActivity.this, device).execute();
         } else {
             // do nothing
+            Log.d(TAG, "GSM ID: " + gcmKey);
         }
     }
 
